@@ -9,7 +9,7 @@ body {
 
 header {
     color: white;
-    background-image: url("../img/sterren.jpg");
+    background-image: url("/img/sterren.jpg");
     background-repeat: no-repeat;
 }
 

@@ -32,9 +32,9 @@
     <h1>SterAfstanden</h1>
     <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li  id="selected"><a href="overzicht.html">Overzicht</a></li>
-            <li><a href="add.html">Voeg toe</a></li>
+            <li><a href="index.jsp">Home</a></li>
+            <li  id="selected"><a href="overzicht.jsp">Overzicht</a></li>
+            <li><a href="add.jsp">Voeg toe</a></li>
         </ul>
     </nav>
 </header>
