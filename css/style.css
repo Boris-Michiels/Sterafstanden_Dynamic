@@ -1,0 +1,174 @@
+body {
+    margin: 0 auto;
+    padding: 0 1em;
+    max-width: 1000px;
+    background-color: darkgrey;
+    font-family: Arial, sans-serif;
+    line-height: 1.4;
+}
+
+header {
+    color: white;
+    background-image: url("../img/sterren.jpg");
+    background-repeat: no-repeat;
+}
+
+h1 {
+    margin: 0 0 1.8em 0;
+    padding: 0 0 0 0.5em;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+nav li:not(:last-child) {
+    border-bottom: 1px solid white;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav a {
+    transition-timing-function: ease-out;
+    transition-duration: 0.2s;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    background-color: midnightblue;
+    color: white;
+    padding: 0.6em 0;
+}
+
+nav a:hover {
+    transition-timing-function: ease-in;
+    transition-duration: 0.2s;
+    background-color: lightgray;
+    color: black;
+}
+
+#selected a {
+    background-color: white;
+    color: black;
+}
+
+main {
+    background-color: white;
+    margin: 0;
+    padding: 0.5em;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: 1px solid black;
+}
+
+td, th {
+    text-align: left;
+    padding: 0.5em 1em 0.5em 0.5em;
+}
+
+th {
+    background-color: #0000e1;
+    color: white;
+}
+
+tr:nth-child(odd) {
+    background-color: #999aff;
+}
+
+#table {
+    overflow-x: auto;
+}
+
+a {
+    color: #d30000;
+}
+
+form p {
+    margin-bottom: 1.5em;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+input, textarea, select {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    line-height: 2em;
+    border: 1px solid #AAA;
+    border-radius: 0.4rem;
+    -webkit-border-radius: 0.4rem;
+    -moz-border-radius: 0.4rem;
+}
+
+select {
+    width: auto;
+    height: 2.5rem;
+}
+
+::placeholder, input, textarea, select {
+    font-size: 0.8rem;
+    padding: 0.4rem;
+}
+
+footer {
+    background-color: darkblue;
+    color: white;
+    padding: 0.2em 0.5em;
+}
+
+
+
+@media screen and (min-width: 600px) {
+    body {
+        padding: 0 1em;
+    }
+
+    nav ul {
+        flex-direction: row;
+    }
+
+    nav li {
+        width: calc(100%/3);
+    }
+
+    nav li:not(:last-child) {
+        border-bottom: none;
+        border-right: 1px solid white;
+    }
+
+    form {
+        margin: auto;
+        max-width: 600px;
+    }
+
+    form p {
+        display: grid;
+        grid-template-areas: "label inputfield";
+        grid-template-columns: 1fr 2fr;
+        grid-column-gap: 1em;
+        align-items: center;
+    }
+
+    label, p > span:first-of-type {
+        grid-area: label;
+        grid-column-start: 1;
+        text-align: right;
+    }
+
+    input, textarea {
+        grid-area: inputfield;
+        grid-column-start: 2;
+    }
+}
