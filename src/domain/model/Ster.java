@@ -1,10 +1,10 @@
-package model.domain;
+package domain.model;
 
-public class ster {
+public class Ster {
     private String naam, grootte;
     private double afstand;
 
-    public ster(String naam, String grootte, double afstand) {
+    public Ster(String naam, String grootte, double afstand) {
         if (naam == null || naam.trim().isEmpty()) throw new IllegalArgumentException("Naam mag niet leeg zijn.");
         this.naam = naam;
         setAfstand(afstand);

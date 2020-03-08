@@ -1,4 +1,4 @@
-<%@ page import="model.domain.ster" %>
+<%@ page import="domain.model.Ster" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
@@ -8,17 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-    ster poolster = new ster("Poolster", "Groot", 430);
-    ster procent = new ster("Proxima Centauri", "Klein", 4.242);
-    ster sirius = new ster("Sirius", "Groot", 8.583);
-
-    List<ster> lijst = new ArrayList<>();
-
-    lijst.add(poolster);
-    lijst.add(procent);
-    lijst.add(sirius);
-%>
+<% List<Ster> lijst = (ArrayList<Ster>) request.getAttribute("DBList"); %>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -33,7 +23,7 @@
     <nav>
         <ul>
             <li><a href="index.jsp">Home</a></li>
-            <li  id="selected"><a href="overzicht.jsp">Overzicht</a></li>
+            <li  id="selected"><a href="${pageContext.request.contextPath}/SterrenServlet">Overzicht</a></li>
             <li><a href="add.jsp">Voeg toe</a></li>
         </ul>
     </nav>
@@ -51,19 +41,19 @@
                     <th>Pas aan</th>
                     <th>Verwijder</th>
                 </tr>
-                <% for (int i = 0; i < lijst.size(); i++) {
+                <% for (Ster ster : lijst) {
                 %>
                 <tr>
-                    <td><%=lijst.get(i).getNaam()%></td>
-                    <td><%=lijst.get(i).getGrootte()%></td>
-                    <td><%=lijst.get(i).getAfstand()%></td>
+                    <td><%=ster.getNaam()%></td>
+                    <td><%=ster.getGrootte()%></td>
+                    <td><%=ster.getAfstand()%></td>
                     <td><a href="wijzig.html">Pas aan</a></td>
                     <td><a href="verwijder.html">Verwijder</a></td>
                 </tr>
                 <%}%>
             </table>
         </div>
-        <p>De verste ster is: </p>
+        <p>De verste ster is: <span><%=request.getAttribute("verste")%></span></p>
     </article>
 </main>
 

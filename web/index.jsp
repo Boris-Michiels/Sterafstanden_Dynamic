@@ -14,7 +14,7 @@
   <nav>
     <ul>
       <li id="selected"><a href="index.jsp">Home</a></li>
-      <li><a href="overzicht.jsp">Overzicht</a></li>
+      <li><a href="${pageContext.request.contextPath}/SterrenServlet">Overzicht</a></li>
       <li><a href="add.jsp">Voeg toe</a></li>
     </ul>
   </nav>
