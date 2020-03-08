@@ -47,8 +47,8 @@
                     <td><%=ster.getNaam()%></td>
                     <td><%=ster.getGrootte()%></td>
                     <td><%=ster.getAfstand()%></td>
-                    <td><a href="wijzig.html">Pas aan</a></td>
-                    <td><a href="verwijder.html">Verwijder</a></td>
+                    <td><a href="#">Pas aan</a></td>
+                    <td><a href="#">Verwijder</a></td>
                 </tr>
                 <%}%>
             </table>

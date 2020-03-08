@@ -14,12 +14,21 @@ import java.util.List;
 
 @WebServlet("/SterrenServlet")
 public class SterrenServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    SterrenDB DB = new SterrenDB();
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String naam = request.getParameter("naam");
+        String grootte = request.getParameter("grootte");
+        String afstandParam = request.getParameter("afstand");
+        double afstand = Double.parseDouble(afstandParam);
+
+        Ster ster = new Ster(naam, grootte, afstand);
+        DB.add(ster);
+
+        doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        SterrenDB DB = new SterrenDB();
         List<Ster> DBList = DB.getSterren();
         Ster verste = DB.getVersteSter();
 

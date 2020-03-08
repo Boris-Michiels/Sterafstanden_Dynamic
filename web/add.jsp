@@ -29,7 +29,7 @@
 <main>
     <article>
         <h2>Voeg een ster toe</h2>
-        <form action="#">
+        <form method="post" action="SterrenServlet">
             <p><label for="sternaam">Naam Ster*</label>
                 <input id="sternaam" type="text" name="naam" placeholder="Proxima Centauri" maxlength="50" required></p>
             <p><label for="stergrootte">Grootte Ster</label>

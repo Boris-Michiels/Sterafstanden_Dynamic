@@ -25,7 +25,6 @@
     <h2>De afstanden van de aarde tot verschillende sterren.</h2>
     <p>Leer de namen van de verschillende sterren in de buurt, hun afstand tot de aarde en
       welke relatieve grootte ze hebben tegenover onze eigen ster, de zon.</p>
-    <p> de gemiddelde afstand is ...</p>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur aut esse magnam modi obcaecati sapiente
       sunt, vitae! Consectetur, ducimus ea libero neque nulla qui quos sequi tempora, ut velit voluptatum!</p>
   </article>
