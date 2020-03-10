@@ -29,22 +29,22 @@
 <main>
     <article>
         <h2>Voeg een ster toe</h2>
-        <form method="post" action="Controller">
+        <form method="post" action="Controller" novalidate>
             <p>
-                <label for="sternaam">Naam Ster*</label>
-                <input id="sternaam" type="text" name="naam" placeholder="Proxima Centauri" maxlength="50" required>
+                <label for="naam">Naam Ster*</label>
+                <input id="naam" type="text" name="naam" placeholder="Proxima Centauri" maxlength="50" required>
             </p>
             <p>
-                <label for="stergrootte">Grootte Ster</label>
-                <select name="grootte" id="stergrootte">
+                <label for="grootte">Grootte Ster</label>
+                <select name="grootte" id="grootte">
                     <option value="klein">Klein</option>
                     <option value="gemiddeld">Gemiddeld</option>
                     <option value="groot">Groot</option>
                 </select>
             </p>
             <p>
-                <label for="sterafstand">Afstand ster (Lichtjaar)*</label>
-                <input id="sterafstand" type="number" name="afstand" step="0.001" min="0" placeholder="4.242" required>
+                <label for="afstand">Afstand ster (Lichtjaar)*</label>
+                <input id="afstand" type="number" name="afstand" step="0.001" min="0" placeholder="4.242" required>
             </p>
             <p>
                 <input type="submit" value="Voeg Toe">
