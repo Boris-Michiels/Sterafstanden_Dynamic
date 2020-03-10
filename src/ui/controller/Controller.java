@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/SterrenServlet")
-public class SterrenServlet extends HttpServlet {
+@WebServlet("/Controller")
+public class Controller extends HttpServlet {
     SterrenDB DB = new SterrenDB();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,13 +29,10 @@ public class SterrenServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Ster> DBList = DB.getSterren();
-        Ster verste = DB.getVersteSter();
+        request.setAttribute("DBList", DB.getSterren());
+        request.setAttribute("verste", DB.getVersteSter().getNaam());
 
-        request.setAttribute("DBList", DBList);
-        request.setAttribute("verste", verste.getNaam());
-
-        RequestDispatcher view = request.getRequestDispatcher("overzicht.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("overview.jsp");
         view.forward(request, response);
     }
 }

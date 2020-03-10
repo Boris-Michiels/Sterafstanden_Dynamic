@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: boris
-  Date: 05/03/2020
-  Time: 11:46
+  Date: 10/03/2020
+  Time: 10:07
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -20,7 +20,7 @@
     <nav>
         <ul>
             <li><a href="index.jsp">Home</a></li>
-            <li><a href="${pageContext.request.contextPath}/SterrenServlet">Overzicht</a></li>
+            <li><a href="Controller">Overzicht</a></li>
             <li id="selected"><a href="add.jsp">Voeg toe</a></li>
         </ul>
     </nav>
@@ -29,18 +29,26 @@
 <main>
     <article>
         <h2>Voeg een ster toe</h2>
-        <form method="post" action="SterrenServlet">
-            <p><label for="sternaam">Naam Ster*</label>
-                <input id="sternaam" type="text" name="naam" placeholder="Proxima Centauri" maxlength="50" required></p>
-            <p><label for="stergrootte">Grootte Ster</label>
+        <form method="post" action="Controller">
+            <p>
+                <label for="sternaam">Naam Ster*</label>
+                <input id="sternaam" type="text" name="naam" placeholder="Proxima Centauri" maxlength="50" required>
+            </p>
+            <p>
+                <label for="stergrootte">Grootte Ster</label>
                 <select name="grootte" id="stergrootte">
                     <option value="klein">Klein</option>
                     <option value="gemiddeld">Gemiddeld</option>
                     <option value="groot">Groot</option>
-                </select></p>
-            <p><label for="sterafstand">Afstand ster (Lichtjaar)*</label>
-                <input id="sterafstand" type="number" name="afstand" step="0.001" min="0" placeholder="4.242" required></p>
-            <p><input type="submit" value="Voeg Toe"></p>
+                </select>
+            </p>
+            <p>
+                <label for="sterafstand">Afstand ster (Lichtjaar)*</label>
+                <input id="sterafstand" type="number" name="afstand" step="0.001" min="0" placeholder="4.242" required>
+            </p>
+            <p>
+                <input type="submit" value="Voeg Toe">
+            </p>
         </form>
     </article>
 </main>

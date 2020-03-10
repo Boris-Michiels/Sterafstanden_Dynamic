@@ -23,7 +23,7 @@
     <nav>
         <ul>
             <li><a href="index.jsp">Home</a></li>
-            <li  id="selected"><a href="${pageContext.request.contextPath}/SterrenServlet">Overzicht</a></li>
+            <li  id="selected"><a href="Controller">Overzicht</a></li>
             <li><a href="add.jsp">Voeg toe</a></li>
         </ul>
     </nav>
@@ -38,8 +38,6 @@
                     <th>Naam</th>
                     <th>Grootte</th>
                     <th>Afstand (lichtjaar)</th>
-                    <th>Pas aan</th>
-                    <th>Verwijder</th>
                 </tr>
                 <% for (Ster ster : lijst) {
                 %>
@@ -47,8 +45,6 @@
                     <td><%=ster.getNaam()%></td>
                     <td><%=ster.getGrootte()%></td>
                     <td><%=ster.getAfstand()%></td>
-                    <td><a href="#">Pas aan</a></td>
-                    <td><a href="#">Verwijder</a></td>
                 </tr>
                 <%}%>
             </table>
