@@ -34,7 +34,7 @@ public class Servlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("DBList", DB.getSterren());
+        request.setAttribute("sterrenLijst", DB.getSterren());
         request.setAttribute("verste", DB.getVersteSter().getNaam());
 
         RequestDispatcher view = request.getRequestDispatcher("overview.jsp");

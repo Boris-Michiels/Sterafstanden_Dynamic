@@ -3,10 +3,9 @@ package domain.db;
 import domain.model.Ster;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SterrenDB {
-    private List<Ster> sterren = new ArrayList<>();
+    private ArrayList<Ster> sterren = new ArrayList<>();
 
     public SterrenDB() {
         Ster poolster = new Ster("Poolster", "Groot", 430);
@@ -18,7 +17,7 @@ public class SterrenDB {
         sterren.add(sirius);
     }
 
-    public List<Ster> getSterren() {
+    public ArrayList<Ster> getSterren() {
         return sterren;
     }
 
@@ -51,7 +50,8 @@ public class SterrenDB {
         return v;
     }
 
-    public void verwijder(Ster ster) {
+    public void verwijder(String naam) {
+        Ster ster = getSter(naam);
         sterren.remove(ster);
     }
 }

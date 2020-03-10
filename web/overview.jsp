@@ -1,5 +1,4 @@
 <%@ page import="domain.model.Ster" %>
-<%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%--
   Created by IntelliJ IDEA.
@@ -9,7 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% List<Ster> lijst = (ArrayList<Ster>) request.getAttribute("DBList"); %>
+<% ArrayList<Ster> sterrenLijst = (ArrayList<Ster>) request.getAttribute("sterrenLijst"); %>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -24,7 +23,7 @@
     <nav>
         <ul>
             <li><a href="index.jsp">Home</a></li>
-            <li  id="selected"><a href="Servlet">Overzicht</a></li>
+            <li id="selected"><a href="Servlet">Overzicht</a></li>
             <li><a href="add.jsp">Voeg toe</a></li>
         </ul>
     </nav>
@@ -40,7 +39,7 @@
                     <th>Grootte</th>
                     <th>Afstand (lichtjaar)</th>
                 </tr>
-                <% for (Ster ster : lijst) {
+                <% for (Ster ster : sterrenLijst) {
                 %>
                 <tr>
                     <td><%=ster.getNaam()%></td>

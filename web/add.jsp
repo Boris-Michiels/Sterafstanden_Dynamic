@@ -32,11 +32,11 @@
         <form method="POST" action="Servlet" novalidate>
             <p>
                 <label for="naam">Naam Ster*</label>
-                <input id="naam" type="text" name="naam" placeholder="Proxima Centauri" maxlength="50" required>
+                <input id="naam" name="naam" type="text" placeholder="Proxima Centauri" maxlength="50" required>
             </p>
             <p>
                 <label for="grootte">Grootte Ster*</label>
-                <select name="grootte" id="grootte" required>
+                <select id="grootte" name="grootte" required>
                     <option value="">Kies</option>
                     <option value="Klein">Klein</option>
                     <option value="Gemiddeld">Gemiddeld</option>
@@ -45,7 +45,7 @@
             </p>
             <p>
                 <label for="afstand">Afstand ster (Lichtjaar)*</label>
-                <input id="afstand" type="number" name="afstand" step="0.001" min="0" placeholder="4.242" required>
+                <input id="afstand" name="afstand" type="number" step="0.001" min="0" placeholder="4.242" required>
             </p>
             <p>
                 <input type="submit" value="Voeg Toe">
