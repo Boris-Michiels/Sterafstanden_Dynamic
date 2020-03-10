@@ -40,15 +40,15 @@ public class SterrenDB {
 
     public Ster getVersteSter() {
         if (sterren.isEmpty()) throw new IllegalArgumentException("Geen sterren in de database.");
-        int v = 0;
+        Ster v = null;
         double max = 0;
         for (Ster i : sterren) {
             if (i.getAfstand() > max) {
                 max = i.getAfstand();
-                v = sterren.indexOf(i);
+                v = i;
             }
         }
-        return sterren.get(v);
+        return v;
     }
 
     public void verwijder(Ster ster) {
