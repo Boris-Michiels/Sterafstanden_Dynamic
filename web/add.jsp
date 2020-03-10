@@ -20,7 +20,7 @@
     <nav>
         <ul>
             <li><a href="index.jsp">Home</a></li>
-            <li><a href="Controller">Overzicht</a></li>
+            <li><a href="Servlet">Overzicht</a></li>
             <li id="selected"><a href="add.jsp">Voeg toe</a></li>
         </ul>
     </nav>
@@ -29,17 +29,18 @@
 <main>
     <article>
         <h2>Voeg een ster toe</h2>
-        <form method="post" action="Controller" novalidate>
+        <form method="POST" action="Servlet" novalidate>
             <p>
                 <label for="naam">Naam Ster*</label>
                 <input id="naam" type="text" name="naam" placeholder="Proxima Centauri" maxlength="50" required>
             </p>
             <p>
-                <label for="grootte">Grootte Ster</label>
-                <select name="grootte" id="grootte">
-                    <option value="klein">Klein</option>
-                    <option value="gemiddeld">Gemiddeld</option>
-                    <option value="groot">Groot</option>
+                <label for="grootte">Grootte Ster*</label>
+                <select name="grootte" id="grootte" required>
+                    <option value="">Kies</option>
+                    <option value="Klein">Klein</option>
+                    <option value="Gemiddeld">Gemiddeld</option>
+                    <option value="Groot">Groot</option>
                 </select>
             </p>
             <p>

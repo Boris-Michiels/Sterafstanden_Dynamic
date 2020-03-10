@@ -20,7 +20,7 @@
     <nav>
         <ul>
             <li id="selected"><a href="index.jsp">Home</a></li>
-            <li><a href="Controller">Overzicht</a></li>
+            <li><a href="Servlet">Overzicht</a></li>
             <li><a href="add.jsp">Voeg toe</a></li>
         </ul>
     </nav>

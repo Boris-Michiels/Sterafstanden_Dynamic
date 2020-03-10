@@ -1,6 +1,7 @@
 package domain.db;
 
 import domain.model.Ster;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,8 @@ public class SterrenDB {
     public void add(Ster ster) {
         if (ster == null) throw new IllegalArgumentException();
         for (Ster i : sterren) {
-            if (ster.getNaam().equals(i.getNaam())) throw new IllegalArgumentException("Er bestaat al een ster met dezelfde naam.");
+            if (ster.getNaam().equals(i.getNaam()))
+                throw new IllegalArgumentException("Er bestaat al een ster met dezelfde naam.");
         }
         sterren.add(ster);
     }

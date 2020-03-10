@@ -17,7 +17,8 @@ public class Ster {
     }
 
     public void setGrootte(String grootte) {
-        if (!grootte.toLowerCase().equals("klein") && !grootte.toLowerCase().equals("gemiddeld") && !grootte.toLowerCase().equals("groot")) throw new IllegalStateException();
+        if (!grootte.equals("Klein") && !grootte.equals("Gemiddeld") && !grootte.equals("Groot"))
+            throw new IllegalStateException();
         this.grootte = grootte;
     }
 

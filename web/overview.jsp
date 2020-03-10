@@ -1,6 +1,7 @@
 <%@ page import="domain.model.Ster" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%--
   Created by IntelliJ IDEA.
   User: boris
   Date: 05/03/2020
@@ -23,7 +24,7 @@
     <nav>
         <ul>
             <li><a href="index.jsp">Home</a></li>
-            <li  id="selected"><a href="Controller">Overzicht</a></li>
+            <li  id="selected"><a href="Servlet">Overzicht</a></li>
             <li><a href="add.jsp">Voeg toe</a></li>
         </ul>
     </nav>
