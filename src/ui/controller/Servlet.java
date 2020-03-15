@@ -42,7 +42,7 @@ public class Servlet extends HttpServlet {
             doGet(request, response);
             return;
         }
-        
+
         view.forward(request, response);
     }
 

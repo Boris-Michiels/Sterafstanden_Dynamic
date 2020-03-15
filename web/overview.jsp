@@ -24,7 +24,7 @@
         <ul>
             <li><a href="index.jsp">Home</a></li>
             <li id="selected"><a href="Servlet">Overzicht</a></li>
-            <li><a href="add.jsp">Voeg toe</a></li>
+            <li><a href="add.jsp">Voeg Toe</a></li>
         </ul>
     </nav>
 </header>
