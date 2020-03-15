@@ -5,20 +5,20 @@ public class Ster {
     private double afstand;
 
     public Ster(String naam, String grootte, double afstand) {
-        if (naam == null || naam.trim().isEmpty()) throw new IllegalArgumentException("Naam mag niet leeg zijn.");
+        if (naam == null || naam.trim().isEmpty()) throw new IllegalArgumentException("Naam mag niet leeg zijn");
         this.naam = naam;
         setAfstand(afstand);
         setGrootte(grootte);
     }
 
     public void setAfstand(double afstand) {
-        if (afstand < 0) throw new IllegalArgumentException("Afstand moet groter zijn dan 0.");
+        if (afstand < 0) throw new IllegalArgumentException("Afstand moet groter zijn dan 0");
         this.afstand = afstand;
     }
 
     public void setGrootte(String grootte) {
         if (!grootte.equals("Klein") && !grootte.equals("Gemiddeld") && !grootte.equals("Groot"))
-            throw new IllegalStateException();
+            throw new IllegalStateException("Ongeldige waarde: " + grootte);
         this.grootte = grootte;
     }
 

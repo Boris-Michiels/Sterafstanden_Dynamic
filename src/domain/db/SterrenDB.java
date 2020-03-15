@@ -25,7 +25,7 @@ public class SterrenDB {
         if (ster == null) throw new IllegalArgumentException();
         for (Ster i : sterren) {
             if (ster.getNaam().equals(i.getNaam()))
-                throw new IllegalArgumentException("Er bestaat al een ster met dezelfde naam.");
+                throw new IllegalArgumentException("Er bestaat al een ster met dezelfde naam");
         }
         sterren.add(ster);
     }
@@ -38,7 +38,7 @@ public class SterrenDB {
     }
 
     public Ster getVersteSter() {
-        if (sterren.isEmpty()) throw new IllegalArgumentException("Geen sterren in de database.");
+        if (sterren.isEmpty()) throw new IllegalArgumentException("Geen sterren in de database");
         Ster v = null;
         double max = 0;
         for (Ster i : sterren) {
