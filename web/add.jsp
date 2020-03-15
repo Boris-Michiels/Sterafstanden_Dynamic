@@ -19,9 +19,9 @@
     <h1>SterAfstanden</h1>
     <nav>
         <ul>
-            <li><a href="index.jsp">Home</a></li>
-            <li><a href="Servlet">Overzicht</a></li>
-            <li id="selected"><a href="add.jsp">Voeg Toe</a></li>
+            <li><a href="Servlet?command=home">Home</a></li>
+            <li><a href="Servlet?command=overview">Overzicht</a></li>
+            <li id="selected"><a href="Servlet?command=addForm">Voeg Toe</a></li>
         </ul>
     </nav>
 </header>
@@ -29,7 +29,7 @@
 <main>
     <article>
         <h2>Voeg een ster toe</h2>
-        <form method="POST" action="Servlet" novalidate>
+        <form method="POST" action="Servlet?command=add" novalidate>
             <p>
                 <label for="naam">Naam Ster*</label>
                 <input id="naam" name="naam" type="text" placeholder="Proxima Centauri" maxlength="50" required>
