@@ -17,9 +17,7 @@ public class SterrenDB {
         sterren.add(sirius);
     }
 
-    public ArrayList<Ster> getSterren() {
-        return sterren;
-    }
+    public ArrayList<Ster> getSterren() { return sterren; }
 
     public void add(Ster ster) {
         if (ster == null) throw new IllegalArgumentException();
@@ -51,7 +49,6 @@ public class SterrenDB {
     }
 
     public void verwijder(String naam) {
-        Ster ster = getSter(naam);
-        sterren.remove(ster);
+        sterren.remove(getSter(naam));
     }
 }

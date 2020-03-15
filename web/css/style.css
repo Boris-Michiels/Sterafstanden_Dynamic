@@ -93,10 +93,6 @@ tr:nth-child(odd) {
     overflow-x: auto;
 }
 
-a {
-    color: #d30000;
-}
-
 form p {
     margin-bottom: 1.5em;
 }

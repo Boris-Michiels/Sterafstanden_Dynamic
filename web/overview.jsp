@@ -32,24 +32,29 @@
 <main>
     <article>
         <h2>Bekijk alle sterren</h2>
+        <% if (!sterrenLijst.isEmpty()) { %>
         <div id="table">
             <table>
                 <tr>
                     <th>Naam</th>
                     <th>Grootte</th>
                     <th>Afstand (lichtjaar)</th>
+                    <th>Verwijder</th>
                 </tr>
-                <% for (Ster ster : sterrenLijst) {
-                %>
+                <% for (Ster ster : sterrenLijst) { %>
                 <tr>
                     <td><%=ster.getNaam()%></td>
                     <td><%=ster.getGrootte()%></td>
                     <td><%=ster.getAfstand()%></td>
+                    <td><a href="Servlet?command=deleteConfirmation&naam=<%=ster.getNaam()%>">Verwijder</a></td>
                 </tr>
-                <%}%>
+                <% } %>
             </table>
         </div>
         <p>De verste ster is: <span><%=request.getAttribute("verste")%></span></p>
+        <% } else { %>
+        <p>Er zitten nog geen sterren in de database. Voeg eerst een ster toe!</p>
+        <% } %>
     </article>
 </main>
 

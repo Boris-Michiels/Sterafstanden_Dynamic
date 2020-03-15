@@ -28,32 +28,46 @@ public class Servlet extends HttpServlet {
         if (request.getParameter("command") != null) command = request.getParameter("command");
 
         switch (command) {
-            case "home" :
+            case "home":
                 destination = home(request, response);
                 break;
-            case "overview" :
+            case "overview":
                 destination = overview(request, response);
                 break;
-            case "addForm" :
+            case "addForm":
                 destination = addForm(request, response);
                 break;
-            case "add" :
+            case "add":
                 destination = add(request, response);
                 break;
-            default :
+            case "deleteConfirmation":
+                destination = "deleteConfirmation.jsp";
+                break;
+            case "delete":
+                destination = delete(request, response);
+                break;
+            default:
                 destination = home(request, response);
         }
         request.getRequestDispatcher(destination).forward(request, response);
     }
 
     private String home(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("verste", DB.getVersteSter().getNaam());
+        try {
+            request.setAttribute("verste", DB.getVersteSter().getNaam());
+        } catch (IllegalArgumentException e) {
+            request.setAttribute("verste", null);
+        }
         return "index.jsp";
     }
 
     private String overview(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("sterrenLijst", DB.getSterren());
-        request.setAttribute("verste", DB.getVersteSter().getNaam());
+        try {
+            request.setAttribute("verste", DB.getVersteSter().getNaam());
+        } catch (IllegalArgumentException e) {
+            request.setAttribute("verste", null);
+        }
         return "overview.jsp";
     }
 
@@ -85,5 +99,12 @@ public class Servlet extends HttpServlet {
             DB.add(ster);
             return overview(request, response);
         }
+    }
+
+    private String delete(HttpServletRequest request, HttpServletResponse response) {
+        if (request.getParameter("bevestiging").equals("Verwijder")) {
+            DB.verwijder(request.getParameter("naam"));
+        }
+        return overview(request, response);
     }
 }
