@@ -76,7 +76,7 @@ public class Servlet extends HttpServlet {
     }
 
     private String delete(HttpServletRequest request, HttpServletResponse response) {
-        if (request.getParameter("bevestiging").equals("Verwijder")) {
+        if (request.getParameter("bevestiging").equals("Verwijder") && DB.getSter(request.getParameter("naam")) != null) {
             DB.verwijder(request.getParameter("naam"));
         }
         return overview(request, response);
