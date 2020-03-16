@@ -140,7 +140,7 @@ footer {
     }
 
     nav li {
-        width: calc(100% / 3);
+        width: 25%;
     }
 
     nav li:not(:last-child) {

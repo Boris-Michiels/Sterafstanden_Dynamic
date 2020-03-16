@@ -34,17 +34,23 @@ public class Servlet extends HttpServlet {
             case "overview":
                 destination = overview(request, response);
                 break;
+            case "deleteConfirmation":
+                destination = deleteConfirmation(request, response);
+                break;
+            case "delete":
+                destination = delete(request, response);
+                break;
             case "addForm":
                 destination = addForm(request, response);
                 break;
             case "add":
                 destination = add(request, response);
                 break;
-            case "deleteConfirmation":
-                destination = "deleteConfirmation.jsp";
+            case "searchForm":
+                destination = searchForm(request, response);
                 break;
-            case "delete":
-                destination = delete(request, response);
+            case "search":
+                destination = search(request, response);
                 break;
             default:
                 destination = home(request, response);
@@ -53,22 +59,27 @@ public class Servlet extends HttpServlet {
     }
 
     private String home(HttpServletRequest request, HttpServletResponse response) {
-        try {
-            request.setAttribute("verste", DB.getVersteSter().getNaam());
-        } catch (IllegalArgumentException e) {
-            request.setAttribute("verste", null);
-        }
+        if (DB.isLeeg()) request.setAttribute("verste", null);
+        else request.setAttribute("verste", DB.getVersteSter().getNaam());
         return "index.jsp";
     }
 
     private String overview(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("sterrenLijst", DB.getSterren());
-        try {
-            request.setAttribute("verste", DB.getVersteSter().getNaam());
-        } catch (IllegalArgumentException e) {
-            request.setAttribute("verste", null);
-        }
+        if (DB.isLeeg()) request.setAttribute("verste", null);
+        else request.setAttribute("verste", DB.getVersteSter().getNaam());
         return "overview.jsp";
+    }
+
+    private String deleteConfirmation(HttpServletRequest request, HttpServletResponse response) {
+        return "deleteConfirmation.jsp";
+    }
+
+    private String delete(HttpServletRequest request, HttpServletResponse response) {
+        if (request.getParameter("bevestiging").equals("Verwijder")) {
+            DB.verwijder(request.getParameter("naam"));
+        }
+        return overview(request, response);
     }
 
     private String addForm(HttpServletRequest request, HttpServletResponse response) {
@@ -101,10 +112,25 @@ public class Servlet extends HttpServlet {
         }
     }
 
-    private String delete(HttpServletRequest request, HttpServletResponse response) {
-        if (request.getParameter("bevestiging").equals("Verwijder")) {
-            DB.verwijder(request.getParameter("naam"));
+    private String searchForm(HttpServletRequest request, HttpServletResponse response) {
+        return "search.jsp";
+    }
+
+    private String search(HttpServletRequest request, HttpServletResponse response) {
+        String naam = request.getParameter("naam");
+
+        if (naam == null || naam.trim().isEmpty()) return searchForm(request, response);
+
+        Ster ster = DB.getSter(naam);
+        if (ster == null) {
+            request.setAttribute("naam", naam);
+            return "notFound.jsp";
         }
-        return overview(request, response);
+        else {
+            request.setAttribute("naam", ster.getNaam());
+            request.setAttribute("grootte", ster.getGrootte());
+            request.setAttribute("afstand", ster.getAfstand());
+            return "found.jsp";
+        }
     }
 }

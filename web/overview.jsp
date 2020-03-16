@@ -25,6 +25,7 @@
             <li><a href="Servlet?command=home">Home</a></li>
             <li id="selected"><a href="Servlet?command=overview">Overzicht</a></li>
             <li><a href="Servlet?command=addForm">Voeg Toe</a></li>
+            <li><a href="Servlet?command=searchForm">Zoeken</a></li>
         </ul>
     </nav>
 </header>

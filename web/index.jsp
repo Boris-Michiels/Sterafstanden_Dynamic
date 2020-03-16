@@ -22,13 +22,14 @@
             <li id="selected"><a href="Servlet?command=home">Home</a></li>
             <li><a href="Servlet?command=overview">Overzicht</a></li>
             <li><a href="Servlet?command=addForm">Voeg Toe</a></li>
+            <li><a href="Servlet?command=searchForm">Zoeken</a></li>
         </ul>
     </nav>
 </header>
 
 <main>
     <article>
-        <h2>De afstanden van de aarde tot verschillende sterren.</h2>
+        <h2>De afstanden van de aarde tot verschillende sterren</h2>
         <p>Leer de namen van de verschillende sterren in de buurt, hun afstand tot de aarde en
             welke relatieve grootte ze hebben tegenover onze eigen ster, de zon.</p>
         <% if (request.getAttribute("verste") != null) { %>

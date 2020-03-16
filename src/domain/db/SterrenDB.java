@@ -17,10 +17,12 @@ public class SterrenDB {
         sterren.add(sirius);
     }
 
+    public boolean isLeeg() { return sterren.isEmpty(); }
+
     public ArrayList<Ster> getSterren() { return sterren; }
 
     public void add(Ster ster) {
-        if (ster == null) throw new IllegalArgumentException();
+        if (ster == null) throw new IllegalArgumentException("Ster is null");
         for (Ster i : sterren) {
             if (ster.getNaam().equals(i.getNaam()))
                 throw new IllegalArgumentException("Er bestaat al een ster met dezelfde naam");
@@ -36,7 +38,7 @@ public class SterrenDB {
     }
 
     public Ster getVersteSter() {
-        if (sterren.isEmpty()) throw new IllegalArgumentException("Geen sterren in de database");
+        if (isLeeg()) throw new IllegalArgumentException("Geen sterren in de database");
         Ster v = null;
         double max = 0;
         for (Ster i : sterren) {
