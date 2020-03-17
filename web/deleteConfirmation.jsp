@@ -31,7 +31,8 @@
     <article>
         <h2>Verwijder een ster</h2>
         <p>Ben je zeker dat je <span><%=request.getParameter("naam")%></span> wil verwijderen?</p>
-        <form method="POST" action="Servlet?command=delete&naam=<%=request.getParameter("naam")%>">
+        <form method="POST" action="Servlet?command=delete">
+            <p><input type="hidden" name="naam" value="<%=request.getParameter("naam")%>"></p>
             <p><input type="submit" name="bevestiging" value="Verwijder"></p>
             <p><input type="submit" name="bevestiging" value="Toch niet"></p>
         </form>

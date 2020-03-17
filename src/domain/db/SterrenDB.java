@@ -17,8 +17,6 @@ public class SterrenDB {
         sterren.add(sirius);
     }
 
-    public boolean isLeeg() { return sterren.isEmpty(); }
-
     public ArrayList<Ster> getSterren() { return sterren; }
 
     public void add(Ster ster) {
@@ -38,7 +36,7 @@ public class SterrenDB {
     }
 
     public Ster getVersteSter() {
-        if (isLeeg()) throw new IllegalArgumentException("Geen sterren in de database");
+        if (sterren.isEmpty()) throw new IllegalArgumentException("Geen sterren in de database");
         Ster v = null;
         double max = 0;
         for (Ster i : sterren) {

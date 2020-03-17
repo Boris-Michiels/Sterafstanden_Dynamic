@@ -33,5 +33,4 @@ public class Ster {
     public double getAfstand() {
         return this.afstand;
     }
-
 }

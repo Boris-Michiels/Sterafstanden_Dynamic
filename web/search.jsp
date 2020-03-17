@@ -30,8 +30,7 @@
 <main>
     <article>
         <h2>Zoek een ster</h2>
-        <form method="GET" action="Servlet" novalidate>
-            <p><input type="hidden" name="command" value="search"></p>
+        <form method="POST" action="Servlet?command=search" novalidate>
             <p>
                 <label for="naam">Naam Ster*</label>
                 <input id="naam" name="naam" type="text" placeholder="Proxima Centauri" maxlength="50" required>

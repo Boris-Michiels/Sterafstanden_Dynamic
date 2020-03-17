@@ -28,65 +28,62 @@ public class Servlet extends HttpServlet {
         if (request.getParameter("command") != null) command = request.getParameter("command");
 
         switch (command) {
-            case "home":
-                destination = home(request, response);
-                break;
             case "overview":
-                destination = overview(request, response);
+                destination = overview(request);
                 break;
             case "deleteConfirmation":
-                destination = deleteConfirmation(request, response);
+                destination = deleteConfirmation(request);
                 break;
             case "delete":
-                destination = delete(request, response);
+                destination = delete(request);
                 break;
             case "addForm":
-                destination = addForm(request, response);
+                destination = addForm(request);
                 break;
             case "add":
-                destination = add(request, response);
+                destination = add(request);
                 break;
             case "searchForm":
-                destination = searchForm(request, response);
+                destination = searchForm(request);
                 break;
             case "search":
-                destination = search(request, response);
+                destination = search(request);
                 break;
             default:
-                destination = home(request, response);
+                destination = home(request);
         }
         request.getRequestDispatcher(destination).forward(request, response);
     }
 
-    private String home(HttpServletRequest request, HttpServletResponse response) {
-        if (DB.isLeeg()) request.setAttribute("verste", null);
+    private String home(HttpServletRequest request) {
+        if (DB.getSterren().isEmpty()) request.setAttribute("verste", null);
         else request.setAttribute("verste", DB.getVersteSter().getNaam());
         return "index.jsp";
     }
 
-    private String overview(HttpServletRequest request, HttpServletResponse response) {
+    private String overview(HttpServletRequest request) {
         request.setAttribute("sterrenLijst", DB.getSterren());
-        if (DB.isLeeg()) request.setAttribute("verste", null);
+        if (DB.getSterren().isEmpty()) request.setAttribute("verste", null);
         else request.setAttribute("verste", DB.getVersteSter().getNaam());
         return "overview.jsp";
     }
 
-    private String deleteConfirmation(HttpServletRequest request, HttpServletResponse response) {
+    private String deleteConfirmation(HttpServletRequest request) {
         return "deleteConfirmation.jsp";
     }
 
-    private String delete(HttpServletRequest request, HttpServletResponse response) {
+    private String delete(HttpServletRequest request) {
         if (request.getParameter("bevestiging").equals("Verwijder") && DB.getSter(request.getParameter("naam")) != null) {
             DB.verwijder(request.getParameter("naam"));
         }
-        return overview(request, response);
+        return overview(request);
     }
 
-    private String addForm(HttpServletRequest request, HttpServletResponse response) {
+    private String addForm(HttpServletRequest request) {
         return "add.jsp";
     }
 
-    private String add(HttpServletRequest request, HttpServletResponse response) {
+    private String add(HttpServletRequest request) {
         String naam = request.getParameter("naam");
         String grootte = request.getParameter("grootte");
         String afstandParam = request.getParameter("afstand");
@@ -94,39 +91,38 @@ public class Servlet extends HttpServlet {
 
         if (naam == null || naam.trim().isEmpty() || afstandParam == null || afstandParam.trim().isEmpty() ||
                 (!grootte.equals("Klein") && !grootte.equals("Gemiddeld") && !grootte.equals("Groot"))) {
-            return addForm(request, response);
+            return addForm(request);
         }
 
         try {
             afstand = Double.parseDouble(afstandParam);
         } catch (NumberFormatException e) {
-            return addForm(request, response);
+            return addForm(request);
         }
 
         if (afstand < 0 || DB.getSter(naam) != null) {
-            return addForm(request, response);
+            return addForm(request);
         } else {
             Ster ster = new Ster(naam, grootte, afstand);
             DB.add(ster);
-            return overview(request, response);
+            return overview(request);
         }
     }
 
-    private String searchForm(HttpServletRequest request, HttpServletResponse response) {
+    private String searchForm(HttpServletRequest request) {
         return "search.jsp";
     }
 
-    private String search(HttpServletRequest request, HttpServletResponse response) {
+    private String search(HttpServletRequest request) {
         String naam = request.getParameter("naam");
 
-        if (naam == null || naam.trim().isEmpty()) return searchForm(request, response);
+        if (naam == null || naam.trim().isEmpty()) return searchForm(request);
 
         Ster ster = DB.getSter(naam);
         if (ster == null) {
             request.setAttribute("naam", naam);
             return "notFound.jsp";
-        }
-        else {
+        } else {
             request.setAttribute("naam", ster.getNaam());
             request.setAttribute("grootte", ster.getGrootte());
             request.setAttribute("afstand", ster.getAfstand());
