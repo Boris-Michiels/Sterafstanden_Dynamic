@@ -29,61 +29,61 @@ public class Servlet extends HttpServlet {
 
         switch (command) {
             case "overview":
-                destination = overview(request);
+                destination = overview(request, response);
                 break;
             case "deleteConfirmation":
-                destination = deleteConfirmation(request);
+                destination = deleteConfirmation(request, response);
                 break;
             case "delete":
-                destination = delete(request);
+                destination = delete(request, response);
                 break;
             case "addForm":
-                destination = addForm(request);
+                destination = addForm(request, response);
                 break;
             case "add":
-                destination = add(request);
+                destination = add(request, response);
                 break;
             case "searchForm":
-                destination = searchForm(request);
+                destination = searchForm(request, response);
                 break;
             case "search":
-                destination = search(request);
+                destination = search(request, response);
                 break;
             default:
-                destination = home(request);
+                destination = home(request, response);
         }
         request.getRequestDispatcher(destination).forward(request, response);
     }
 
-    private String home(HttpServletRequest request) {
+    private String home(HttpServletRequest request, HttpServletResponse response) {
         if (DB.getSterren().isEmpty()) request.setAttribute("verste", null);
         else request.setAttribute("verste", DB.getVersteSter().getNaam());
         return "index.jsp";
     }
 
-    private String overview(HttpServletRequest request) {
+    private String overview(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("sterrenLijst", DB.getSterren());
         if (DB.getSterren().isEmpty()) request.setAttribute("verste", null);
         else request.setAttribute("verste", DB.getVersteSter().getNaam());
         return "overview.jsp";
     }
 
-    private String deleteConfirmation(HttpServletRequest request) {
+    private String deleteConfirmation(HttpServletRequest request, HttpServletResponse response) {
         return "deleteConfirmation.jsp";
     }
 
-    private String delete(HttpServletRequest request) {
+    private String delete(HttpServletRequest request, HttpServletResponse response) {
         if (request.getParameter("bevestiging").equals("Verwijder") && DB.getSter(request.getParameter("naam")) != null) {
             DB.verwijder(request.getParameter("naam"));
         }
-        return overview(request);
+        return overview(request, response);
     }
 
-    private String addForm(HttpServletRequest request) {
+    private String addForm(HttpServletRequest request, HttpServletResponse response) {
         return "add.jsp";
     }
 
-    private String add(HttpServletRequest request) {
+    private String add(HttpServletRequest request, HttpServletResponse response) {
         String naam = request.getParameter("naam");
         String grootte = request.getParameter("grootte");
         String afstandParam = request.getParameter("afstand");
@@ -91,32 +91,32 @@ public class Servlet extends HttpServlet {
 
         if (naam == null || naam.trim().isEmpty() || afstandParam == null || afstandParam.trim().isEmpty() ||
                 (!grootte.equals("Klein") && !grootte.equals("Gemiddeld") && !grootte.equals("Groot"))) {
-            return addForm(request);
+            return addForm(request, response);
         }
 
         try {
             afstand = Double.parseDouble(afstandParam);
         } catch (NumberFormatException e) {
-            return addForm(request);
+            return addForm(request, response);
         }
 
         if (afstand < 0 || DB.getSter(naam) != null) {
-            return addForm(request);
+            return addForm(request, response);
         } else {
             Ster ster = new Ster(naam, grootte, afstand);
             DB.add(ster);
-            return overview(request);
+            return overview(request, response);
         }
     }
 
-    private String searchForm(HttpServletRequest request) {
+    private String searchForm(HttpServletRequest request, HttpServletResponse response) {
         return "search.jsp";
     }
 
-    private String search(HttpServletRequest request) {
+    private String search(HttpServletRequest request, HttpServletResponse response) {
         String naam = request.getParameter("naam");
 
-        if (naam == null || naam.trim().isEmpty()) return searchForm(request);
+        if (naam == null || naam.trim().isEmpty()) return searchForm(request, response);
 
         Ster ster = DB.getSter(naam);
         if (ster == null) {
