@@ -1,5 +1,3 @@
-<%@ page import="domain.model.Ster" %>
-<%@ page import="java.util.ArrayList" %>
 <%--
   Created by IntelliJ IDEA.
   User: boris
@@ -8,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% ArrayList<Ster> sterrenLijst = (ArrayList<Ster>) request.getAttribute("sterrenLijst"); %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -33,29 +31,32 @@
 <main>
     <article>
         <h2>Bekijk alle sterren</h2>
-        <% if (!sterrenLijst.isEmpty()) { %>
-        <div id="table">
-            <table>
-                <tr>
-                    <th>Naam</th>
-                    <th>Grootte</th>
-                    <th>Afstand (lichtjaar)</th>
-                    <th>Verwijder</th>
-                </tr>
-                <% for (Ster ster : sterrenLijst) { %>
-                <tr>
-                    <td><%=ster.getNaam()%></td>
-                    <td><%=ster.getGrootte()%></td>
-                    <td><%=ster.getAfstand()%></td>
-                    <td><a href="Servlet?command=deleteConfirmation&naam=<%=ster.getNaam()%>">Verwijder</a></td>
-                </tr>
-                <% } %>
-            </table>
-        </div>
-        <p>De verste ster is: <span><%=request.getAttribute("verste")%></span></p>
-        <% } else { %>
-        <p>Er zitten nog geen sterren in de database. Voeg eerst een ster toe!</p>
-        <% } %>
+        <c:choose>
+            <c:when test="${not empty sterrenLijst}">
+                <div id="table">
+                    <table>
+                        <tr>
+                            <th>Naam</th>
+                            <th>Grootte</th>
+                            <th>Afstand (lichtjaar)</th>
+                            <th>Verwijder</th>
+                        </tr>
+                        <c:forEach var="ster" items="${sterrenLijst}">
+                            <tr>
+                                <td>${ster.naam}</td>
+                                <td>${ster.grootte}</td>
+                                <td>${ster.afstand}</td>
+                                <td><a href="Servlet?command=deleteConfirmation&naam=${ster.naam}">Verwijder</a></td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </div>
+                <p>De verste ster is: <span>${verste}</span></p>
+            </c:when>
+            <c:otherwise>
+                <p>Er zitten nog geen sterren in de database. Voeg eerst een ster toe!</p>
+            </c:otherwise>
+        </c:choose>
     </article>
 </main>
 

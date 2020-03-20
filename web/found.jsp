@@ -31,8 +31,8 @@
     <article>
         <h2>Zoekresultaat: Gevonden</h2>
         <p>Je vroeg naar de volgende ster:</p>
-        <p><%=request.getAttribute("naam")%> (Grootte: <%=request.getAttribute("grootte")%>):
-            <%=request.getAttribute("afstand")%> lichtjaren.</p>
+        <p>${naam} (Grootte: ${grootte}):
+            ${afstand} lichtjaren.</p>
     </article>
 </main>
 
