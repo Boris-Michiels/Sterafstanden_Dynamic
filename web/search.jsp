@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -15,6 +16,15 @@
 <main>
     <article>
         <h2>Zoek een ster</h2>
+        <c:if test="${not empty errors}">
+            <div class="alert alert-danger">
+                <ul>
+                    <c:forEach items="${errors}" var="error">
+                        <li>${error}</li>
+                    </c:forEach>
+                </ul>
+            </div>
+        </c:if>
         <form method="POST" action="Servlet?command=search" novalidate>
             <p>
                 <label for="naam">Naam Ster*</label>

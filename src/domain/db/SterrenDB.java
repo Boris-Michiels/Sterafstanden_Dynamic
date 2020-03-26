@@ -29,6 +29,7 @@ public class SterrenDB {
     }
 
     public Ster getSter(String naam) {
+        if (naam == null || naam.trim().isEmpty()) throw new IllegalArgumentException("Vul een naam in");
         for (Ster i : sterren) {
             if (i.getNaam().equals(naam)) return i;
         }
@@ -48,7 +49,5 @@ public class SterrenDB {
         return v;
     }
 
-    public void verwijder(String naam) {
-        sterren.remove(getSter(naam));
-    }
+    public void verwijder(String naam) { sterren.remove(getSter(naam)); }
 }

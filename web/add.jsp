@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -15,15 +16,33 @@
 <main>
     <article>
         <h2>Voeg een ster toe</h2>
+        <c:if test="${not empty errors}">
+            <div class="alert alert-danger">
+                <ul>
+                    <c:forEach items="${errors}" var="error">
+                        <li>${error}</li>
+                    </c:forEach>
+                </ul>
+            </div>
+        </c:if>
         <form method="POST" action="Servlet?command=add" novalidate>
             <p>
                 <label for="naam">Naam Ster*</label>
-                <input id="naam" name="naam" type="text" placeholder="Proxima Centauri" maxlength="50" required>
+                <input id="naam" name="naam" type="text" maxlength="50" placeholder="Poolster" value="${previousNaam}" required>
             </p>
             <p>
                 <label for="grootte">Grootte Ster*</label>
                 <select id="grootte" name="grootte" required>
-                    <option value="">Kies</option>
+                    <option value="${previousGrootte}">
+                        <c:choose>
+                            <c:when test="${not empty previousGrootte}">
+                                ${previousGrootte}
+                            </c:when>
+                            <c:otherwise>
+                                Kies
+                            </c:otherwise>
+                        </c:choose>
+                    </option>
                     <option value="Klein">Klein</option>
                     <option value="Gemiddeld">Gemiddeld</option>
                     <option value="Groot">Groot</option>
@@ -31,7 +50,7 @@
             </p>
             <p>
                 <label for="afstand">Afstand ster (Lichtjaar)*</label>
-                <input id="afstand" name="afstand" type="number" step="0.001" min="0" placeholder="4.242" required>
+                <input id="afstand" name="afstand" type="number" step="0.001" min="0" placeholder="430" value="${previousAfstand}" required>
             </p>
             <p>
                 <input type="submit" value="Voeg Toe">

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet("/Servlet")
 public class Servlet extends HttpServlet {
@@ -75,9 +76,11 @@ public class Servlet extends HttpServlet {
     }
 
     private String delete(HttpServletRequest request, HttpServletResponse response) {
-        if (request.getParameter("bevestiging").equals("Verwijder") && DB.getSter(request.getParameter("naam")) != null) {
-            DB.verwijder(request.getParameter("naam"));
-        }
+        try {
+            if (request.getParameter("bevestiging").equals("Verwijder") && DB.getSter(request.getParameter("naam")) != null) {
+                DB.verwijder(request.getParameter("naam"));
+            }
+        } catch (IllegalArgumentException ignored) { }
         return overview(request, response);
     }
 
@@ -86,28 +89,54 @@ public class Servlet extends HttpServlet {
     }
 
     private String add(HttpServletRequest request, HttpServletResponse response) {
+        ArrayList<String> errors = new ArrayList<>();
+        Ster ster = new Ster();
+
+        setNaam(ster, request, errors);
+        setGrootte(ster, request, errors);
+        setAfstand(ster, request, errors);
+
+        if (errors.size() == 0) {
+            try {
+                DB.add(ster);
+                return overview(request, response);
+            } catch (Exception e) {
+                errors.add(e.getMessage());
+            }
+        }
+        request.setAttribute("errors", errors);
+        return addForm(request, response);
+    }
+
+    private void setNaam(Ster ster, HttpServletRequest request, ArrayList<String> errors) {
         String naam = request.getParameter("naam");
-        String grootte = request.getParameter("grootte");
-        String afstandParam = request.getParameter("afstand");
-        double afstand;
-
-        if (naam == null || naam.trim().isEmpty() || afstandParam == null || afstandParam.trim().isEmpty() ||
-                (!grootte.equals("Klein") && !grootte.equals("Gemiddeld") && !grootte.equals("Groot"))) {
-            return addForm(request, response);
-        }
-
         try {
-            afstand = Double.parseDouble(afstandParam);
-        } catch (NumberFormatException e) {
-            return addForm(request, response);
+            ster.setNaam(naam);
+            request.setAttribute("previousNaam", naam);
+        } catch (IllegalArgumentException e) {
+            errors.add(e.getMessage());
         }
+    }
 
-        if (afstand < 0 || DB.getSter(naam) != null) {
-            return addForm(request, response);
-        } else {
-            Ster ster = new Ster(naam, grootte, afstand);
-            DB.add(ster);
-            return overview(request, response);
+    private void setGrootte(Ster ster, HttpServletRequest request, ArrayList<String> errors) {
+        String grootte = request.getParameter("grootte");
+        try {
+            ster.setGrootte(grootte);
+            request.setAttribute("previousGrootte", grootte);
+        } catch (IllegalArgumentException e) {
+            errors.add(e.getMessage());
+        }
+    }
+
+    private void setAfstand(Ster ster, HttpServletRequest request, ArrayList<String> errors) {
+        String afstandParam = request.getParameter("afstand");
+        try {
+            ster.setAfstand(Double.parseDouble(afstandParam));
+            request.setAttribute("previousAfstand", afstandParam);
+        } catch (NumberFormatException | NullPointerException e) {
+            errors.add("Vul een nummer in voor afstand");
+        } catch (IllegalArgumentException e) {
+            errors.add(e.getMessage());
         }
     }
 
@@ -116,19 +145,24 @@ public class Servlet extends HttpServlet {
     }
 
     private String search(HttpServletRequest request, HttpServletResponse response) {
+        ArrayList<String> errors = new ArrayList<>();
         String naam = request.getParameter("naam");
 
-        if (naam == null || naam.trim().isEmpty()) return searchForm(request, response);
-
-        Ster ster = DB.getSter(naam);
-        if (ster == null) {
-            request.setAttribute("naam", naam);
-            return "notFound.jsp";
-        } else {
-            request.setAttribute("naam", ster.getNaam());
-            request.setAttribute("grootte", ster.getGrootte());
-            request.setAttribute("afstand", ster.getAfstand());
-            return "found.jsp";
+        try {
+            Ster ster = DB.getSter(naam);
+            if (ster == null) {
+                request.setAttribute("naam", naam);
+                return "notFound.jsp";
+            } else {
+                request.setAttribute("naam", ster.getNaam());
+                request.setAttribute("grootte", ster.getGrootte());
+                request.setAttribute("afstand", ster.getAfstand());
+                return "found.jsp";
+            }
+        } catch (IllegalArgumentException e) {
+            errors.add(e.getMessage());
         }
+        request.setAttribute("errors", errors);
+        return searchForm(request, response);
     }
 }

@@ -5,21 +5,29 @@ public class Ster {
     private double afstand;
 
     public Ster(String naam, String grootte, double afstand) {
-        if (naam == null || naam.trim().isEmpty()) throw new IllegalArgumentException("Naam mag niet leeg zijn");
-        this.naam = naam;
-        setAfstand(afstand);
+        setNaam(naam);
         setGrootte(grootte);
+        setAfstand(afstand);
     }
 
-    public void setAfstand(double afstand) {
-        if (afstand < 0) throw new IllegalArgumentException("Afstand moet groter zijn dan 0");
-        this.afstand = afstand;
+    public Ster() {
+
+    }
+
+    public void setNaam(String naam) {
+        if (naam == null || naam.trim().isEmpty()) throw new IllegalArgumentException("Vul een naam in");
+        this.naam = naam;
     }
 
     public void setGrootte(String grootte) {
-        if (!grootte.equals("Klein") && !grootte.equals("Gemiddeld") && !grootte.equals("Groot"))
-            throw new IllegalStateException("Ongeldige waarde: " + grootte);
+        if (grootte == null || (!grootte.equals("Klein") && !grootte.equals("Gemiddeld") && !grootte.equals("Groot")))
+            throw new IllegalArgumentException("Kies een geldige grootte");
         this.grootte = grootte;
+    }
+
+    public void setAfstand(double afstand) {
+        if (afstand < 0) throw new IllegalArgumentException("Afstand moet positief zijn");
+        this.afstand = afstand;
     }
 
     public String getNaam() {
