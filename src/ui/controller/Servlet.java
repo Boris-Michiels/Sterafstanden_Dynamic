@@ -62,9 +62,11 @@ public class Servlet extends HttpServlet {
     }
 
     private String overview(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("sterrenLijst", DB.getSterren());
         if (DB.getSterren().isEmpty()) request.setAttribute("verste", null);
-        else request.setAttribute("verste", DB.getVersteSter().getNaam());
+        else {
+            request.setAttribute("sterrenLijst", DB.getSterren());
+            request.setAttribute("verste", DB.getVersteSter().getNaam());
+        }
         return "overview.jsp";
     }
 
