@@ -15,7 +15,7 @@
 <main>
     <article>
         <h2>Zoekresultaat: Niet Gevonden</h2>
-        <p>Je vroeg naar de volgende ster: ${naam}. Deze zit nog niet in de database.</p>
+        <p>Je vroeg naar de ster "${naam}". Deze zit nog niet in de database.</p>
     </article>
 </main>
 

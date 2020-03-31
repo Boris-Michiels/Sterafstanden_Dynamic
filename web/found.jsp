@@ -16,8 +16,7 @@
     <article>
         <h2>Zoekresultaat: Gevonden</h2>
         <p>Je vroeg naar de volgende ster:</p>
-        <p>${naam} (Grootte: ${grootte}):
-            ${afstand} lichtjaren.</p>
+        <p>${naam} (Grootte: ${grootte}):${afstand} lichtjaren.</p>
     </article>
 </main>
 
