@@ -77,7 +77,7 @@ public class Servlet extends HttpServlet {
 
     private String delete(HttpServletRequest request, HttpServletResponse response) {
         try {
-            if (request.getParameter("bevestiging").equals("Verwijder") && DB.getSter(request.getParameter("naam")) != null) {
+            if (request.getParameter("bevestiging") != null && request.getParameter("bevestiging").equals("Verwijder") && DB.getSter(request.getParameter("naam")) != null) {
                 DB.verwijder(request.getParameter("naam"));
             }
         } catch (IllegalArgumentException ignored) { }
