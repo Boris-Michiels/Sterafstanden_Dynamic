@@ -33,10 +33,10 @@
             <p>
                 <label for="grootte">Grootte Ster*</label>
                 <select id="grootte" name="grootte" required>
-                    <option value="">Kies</option>
-                    <option value="Klein" <c:if test="${previousGrootte == 'Klein'}">selected="selected"</c:if>>Klein</option>
-                    <option value="Gemiddeld" <c:if test="${previousGrootte == 'Gemiddeld'}">selected="selected"</c:if>>Gemiddeld</option>
-                    <option value="Groot" <c:if test="${previousGrootte == 'Groot'}">selected="selected"</c:if>>Groot</option>
+                    <option value="" selected disabled hidden>Kies</option>
+                    <option value="Klein" <c:if test="${previousGrootte == 'Klein'}">selected</c:if>>Klein</option>
+                    <option value="Gemiddeld" <c:if test="${previousGrootte == 'Gemiddeld'}">selected</c:if>>Gemiddeld</option>
+                    <option value="Groot" <c:if test="${previousGrootte == 'Groot'}">selected</c:if>>Groot</option>
                 </select>
             </p>
             <p>

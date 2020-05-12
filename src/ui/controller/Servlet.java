@@ -71,9 +71,7 @@ public class Servlet extends HttpServlet {
         return "overview.jsp";
     }
 
-    private String deleteConfirmation(HttpServletRequest request, HttpServletResponse response) {
-        return "deleteConfirmation.jsp";
-    }
+    private String deleteConfirmation(HttpServletRequest request, HttpServletResponse response) { return "deleteConfirmation.jsp"; }
 
     private String delete(HttpServletRequest request, HttpServletResponse response) {
         try {
@@ -155,7 +153,7 @@ public class Servlet extends HttpServlet {
                 return "notFound.jsp";
             } else {
                 request.setAttribute("naam", ster.getNaam());
-                request.setAttribute("grootte", ster.getGrootte());
+                request.setAttribute("grootte", ster.getGrootte().toLowerCase());
                 request.setAttribute("afstand", ster.getAfstand());
                 return "found.jsp";
             }
