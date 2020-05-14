@@ -34,9 +34,9 @@
                 <label for="grootte">Grootte Ster*</label>
                 <select id="grootte" name="grootte" required>
                     <option value="" selected disabled hidden>Kies</option>
-                    <option value="Klein" <c:if test="${previousGrootte == 'Klein'}">selected</c:if>>Klein</option>
-                    <option value="Gemiddeld" <c:if test="${previousGrootte == 'Gemiddeld'}">selected</c:if>>Gemiddeld</option>
-                    <option value="Groot" <c:if test="${previousGrootte == 'Groot'}">selected</c:if>>Groot</option>
+                    <option value="Klein" ${previousGrootte == 'Klein' ? "selected" : ""}>Klein</option>
+                    <option value="Gemiddeld" ${previousGrootte == 'Gemiddeld' ? "selected" : ""}>Gemiddeld</option>
+                    <option value="Groot" ${previousGrootte == 'Groot' ? "selected" : ""}>Groot</option>
                 </select>
             </p>
             <p>
