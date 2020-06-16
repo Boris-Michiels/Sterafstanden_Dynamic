@@ -25,7 +25,8 @@
                 </ul>
             </div>
         </c:if>
-        <form method="POST" action="Servlet?command=search" novalidate>
+        <form method="GET" action="Servlet" novalidate>
+            <p><input type="hidden" name="command" value="search"></p>
             <p>
                 <label for="naam">Naam Ster*</label>
                 <input id="naam" name="naam" type="text" placeholder="Proxima Centauri" maxlength="50" required>
