@@ -152,9 +152,7 @@ public class Servlet extends HttpServlet {
                 request.setAttribute("naam", naam);
                 return "notFound.jsp";
             } else {
-                request.setAttribute("naam", ster.getNaam());
-                request.setAttribute("grootte", ster.getGrootte().toLowerCase());
-                request.setAttribute("afstand", ster.getAfstand());
+                request.setAttribute("ster", ster);
                 return "found.jsp";
             }
         } catch (IllegalArgumentException e) {

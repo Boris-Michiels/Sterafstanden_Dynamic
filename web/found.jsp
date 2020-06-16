@@ -16,7 +16,7 @@
     <article>
         <h2>Zoekresultaat: Gevonden</h2>
         <p>Je vroeg naar de volgende ster:</p>
-        <p><span>${naam}</span>: ${afstand} lichtjaren ver, relatief ${grootte}.</p>
+        <p><span>${ster.naam}</span>: ${ster.afstand} lichtjaren ver, relatief ${ster.grootte.toLowerCase()}.</p>
     </article>
 </main>
 
